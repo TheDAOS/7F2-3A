@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class File(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    file_path = models.CharField(max_length=255)
+    file_path = models.FileField(upload_to='uploads/')
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
     file_type = models.CharField(max_length=50)
