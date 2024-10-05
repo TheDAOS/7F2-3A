@@ -1,18 +1,20 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth.models import User
+from homeapp.models import User_types
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url="/login/")
 def instructor_dashboard(request):
-    if request.user.is_authenticated:
+    user_type = User_types.objects.get(user_id=request.user.id)
+
+    # Check if the user is an instructor (user_type = 'INS')
+    if user_type.user_type == 'INS':
         template = loader.get_template('dashboard.html')
-
-        # user = User.objects.get(username=request.user.username)
-
         context = {
-            'username' : request.user.username,
+            'username': request.user.username,
         }
-
         return HttpResponse(template.render(context, request))
     else:
-        return HttpResponse("You are not logged in.")
+        return redirect('/Redirect/')

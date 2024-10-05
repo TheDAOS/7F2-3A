@@ -25,39 +25,39 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-2">
-            <!-- disabled  sanju -->
-            <!--
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            -->
-            <li class="nav-item dropstart">
-              <button class="btn btn-outline-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Add
+            
+            <!-- Single Dropdown for Add and Account options -->
+            <li class="nav-item dropdown">
+              <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {% if user.is_authenticated %}
+                  {{ user.username }}
+                {% else %}
+                  Account
+                {% endif %}
               </button>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu dropdown-menu-end">
+                
+                <!-- Add Options -->
+                <li><h6 class="dropdown-header">Add</h6></li>
                 <li><a class="dropdown-item" href="#">Text</a></li>
                 <li><a class="dropdown-item" href="#">Image</a></li>
                 <li><a class="dropdown-item" href="#">Video</a></li>
                 <li><a class="dropdown-item" href="#">Document</a></li>
+                <li><hr class="dropdown-divider"></li>
+                
+                <!-- Account Options -->
+                <!-- {% if user.is_authenticated %} -->
+                  <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                <!-- {% else %}
+                  <li><a class="dropdown-item" href="{% url 'login' %}">Sign In</a></li>
+                {% endif %} -->
               </ul>
             </li>
-
-            <li class="nav-item">
-              <button class="btn btn-outline-success" type="submit">{{ username }}</button>
-            </li>
-            <!--
-            <li class="nav-item">
-              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-            </li>
-            -->
           </ul>
         </div>
       </div>
     </nav>
+        
 
     <!-- 2 container -->
     <div class="container-fluid py-5 px-3">
