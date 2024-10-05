@@ -20,8 +20,8 @@ def instructor_dashboard(request):
         return HttpResponse("You are not logged in.")
 
 
+# Testing file upload
 # new_file = File.objects.create(user=user, file_path='/images/photo1.jpg', file_type='image')
-
 @login_required
 def upload_file(request):
     if request.method == 'POST':
@@ -30,7 +30,7 @@ def upload_file(request):
             file_instance = form.save(commit=False)
             file_instance.user = request.user  # Set the user
             file_instance.save()
-            return redirect('success_url')  # Redirect to a success page or file list
+            return redirect('instructor_dashboard')  # Redirect to a success page or file list
     else:
         form = FileUploadForm()
     return render(request, 'upload.html', {'form': form})
