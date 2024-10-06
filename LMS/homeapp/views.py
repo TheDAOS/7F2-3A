@@ -55,11 +55,14 @@ def register(request):
 
 @login_required(login_url="/login/")
 def home(request):
-    if request.user.is_authenticated:
+    user_type = User_types.objects.get(user_id=request.user.id)
+
+    # Check if the user is a student (user_type = 'STU')
+    if user_type.user_type == 'STU':
         user_info = {
             'username': request.user.username,
             'email': request.user.email,
         }
         return render(request, 'home.html', {'user_info': user_info})
     else:
-        return HttpResponse("You are not logged in.")
+        return redirect('/Redirect/')
