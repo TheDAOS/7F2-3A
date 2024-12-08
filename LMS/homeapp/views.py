@@ -6,7 +6,7 @@ from django.contrib import messages
 from .forms import UserRegisterForm, UserLoginForm
 from .models import User_types
 
-@login_required(login_url="/login/")
+
 def userSplitterView(request):
     user_id = request.user.id
     user_type = User_types.objects.get(user_id=user_id)
@@ -65,4 +65,4 @@ def home(request):
         }
         return render(request, 'home.html', {'user_info': user_info})
     else:
-        return redirect('/Redirect/')
+        return redirect('/redirect/')

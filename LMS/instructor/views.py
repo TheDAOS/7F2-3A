@@ -19,7 +19,7 @@ def instructor_dashboard(request):
         }
         return HttpResponse(template.render(context, request))
     else:
-        return redirect('/Redirect/')
+        return redirect('/redirect/')
 
 # Testing file upload
 # new_file = File.objects.create(user=user, file_path='/images/photo1.jpg', file_type='image')

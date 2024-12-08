@@ -21,6 +21,7 @@
                 {% endif %}
 
                 <form method="post" class="mt-4">
+                    <!-- <input type="hidden" name="csrf_token" value="{{ csrf_token }}"> -->
                     {% csrf_token %}
                     {% comment %} {{ form.as_p }} {% endcomment %}
                     <div class="form-group">
