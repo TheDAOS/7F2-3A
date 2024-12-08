@@ -33,7 +33,8 @@ def loginView(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('userSplitterView')
+                # return redirect('userSplitterView')
+                return redirect('/redirect/')
             else:
                 messages.add_message(request, messages.ERROR, "Invalid username or password")
     else:
@@ -58,11 +59,11 @@ def home(request):
     user_type = User_types.objects.get(user_id=request.user.id)
 
     # Check if the user is a student (user_type = 'STU')
-    if user_type.user_type == 'STU':
+    if user_type.user_type:
         user_info = {
             'username': request.user.username,
             'email': request.user.email,
         }
         return render(request, 'home.html', {'user_info': user_info})
     else:
-        return redirect('/redirect/')
+        return redirect('userSplitterView')
