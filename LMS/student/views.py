@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 def student_dashboard(request):
     if request.user.is_authenticated:
-        template = loader.get_template('dashboard.html')
+        template = loader.get_template('student_dashboard.html')
 
         # user = User.objects.get(username=request.user.username)
 
